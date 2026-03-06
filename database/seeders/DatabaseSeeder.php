@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
         $wilayahs = ['Bali', 'Lombok', 'Raja Ampat', 'Yogyakarta', 'Labuan Bajo', 'Bromo'];
         foreach ($wilayahs as $i => $wilayah) {
             $nama = "Paket Wisata {$wilayah} Eksotis";
-            PaketWisata::create([
+            PaketWisata::updateOrCreate([
                 'nama_paket' => $nama,
                 'slug' => Str::slug($nama) . '-' . ($i+1),
                 'wilayah' => $wilayah,
