@@ -3,7 +3,7 @@
 Website travel professional dengan fitur lengkap sesuai flowchart desain.
 
 ## 📦 Stack Teknologi
-- **Laravel 11** – Backend framework
+- **Laravel 12** – Backend framework
 - **Filament 3** – Admin panel
 - **Laravel Breeze** – Auth (login/register)
 - **Blade + Alpine.js** – Frontend templating
@@ -42,7 +42,7 @@ WHATSAPP_NUMBER=6281234567890
 
 ### 4. Setup Database
 ```bash
-mysql -u root -p -e "CREATE DATABASE travel_rental CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+mysql -u root -p -e "CREATE DATABASE Nusa_travel_Blade CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
 php artisan migrate
 php artisan db:seed
 ```
