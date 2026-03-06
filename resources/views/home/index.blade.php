@@ -237,7 +237,7 @@
 </section>
 
 {{-- TESTIMONI - White Theme --}}
-<section class="py-20 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 text-white" id="testimoni">
+<section class="py-20 bg-primary-600 text-white" id="testimoni">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
             <h2 class="text-3xl font-extrabold text-white mb-3">Apa Kata Mereka?</h2>

@@ -78,6 +78,7 @@
     }
 </style>
 
+<link rel="icon" type="image/png" href="{{ asset('storage/Logo/logo.png') }}">
     @stack('styles')
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -86,13 +87,14 @@
   <nav x-data="{ 
         open: false, 
         scrolled: false, 
-        /* Logika: Cek apakah URL saat ini adalah Home, Paket Wisata, atau Rental Mobil */
-        isTransparentPage: ['/', '/paket-wisata', '/rental-mobil'].includes(window.location.pathname)
+        /* Pastikan deteksi URL mencakup kemungkinan trailing slash */
+        isTransparentPage: ['/', '/paket-wisata', '/rental-mobil', '/paket-wisata/', '/rental-mobil/'].includes(window.location.pathname)
     }" 
-    x-init="if(!isTransparentPage) scrolled = true"
+    x-init="if(!isTransparentPage) { scrolled = true } else { scrolled = window.pageYOffset > 50 }"
     @scroll.window="if(isTransparentPage) scrolled = (window.pageYOffset > 50)"
+    class="fixed w-full z-50 transition-all duration-300"
     :class="{
-        'bg-white border-b border-gray-200 py-2 border-b border-gray-200': scrolled || !isTransparentPage,
+        'bg-white border-b border-gray-200 py-2': scrolled,
         'bg-transparent py-4': !scrolled && isTransparentPage
     }"
     class="fixed w-full top-0 z-50 transition-all duration-300">
@@ -100,9 +102,7 @@
             <div class="flex justify-between h-16 items-center">
                 <!-- Logo -->
                 <a href="{{ route('home') }}" class="flex items-center gap-2 group">
-    <div class="w-9 h-9 bg-primary-600 rounded-lg flex items-center justify-center shadow-lg transition-transform group-hover:scale-110">
-        <i class="fas fa-plane text-white text-sm"></i>
-    </div>
+        <img class="w-12 h-12"  src="{{asset('storage/Logo/logo.png')}}" alt="">
     
     <span class="font-bold text-xl transition-colors duration-300"
           :class="scrolled ? 'text-primary-900' : 'text-white'">
@@ -148,8 +148,12 @@
                             <button type="submit" class="text-sm text-red-500 hover:text-red-700">Logout</button>
                         </form>
                     @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-600 hover:text-primary-600 font-medium">Masuk</a>
-                        <a href="{{ route('register') }}" class="bg-primary-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-700 transition">Daftar</a>
+                    <a href="{{ route('login') }}" 
+   class="text-sm font-medium transition duration-300"
+   :class="scrolled ? 'text-primary-600 hover:text-primary-700' : 'text-white hover:text-gray-200'">
+    Masuk
+</a>
+                    <a href="{{ route('register') }}" class="bg-primary-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-700 transition">Daftar</a>
                     @endauth
                 </div>
 
@@ -190,9 +194,8 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
                 <div class="col-span-1">
                     <div class="flex items-center gap-2 mb-4">
-                        <div class="w-9 h-9 bg-primary-500 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-plane text-white text-sm"></i>
-                        </div>
+                                <img class="w-12 h-12"  src="{{asset('storage/Logo/logo.png')}}" alt="">
+
                         <span class="font-bold text-xl">{{ config('app.name', 'TravelKu') }}</span>
                     </div>
                     <p class="text-gray-400 text-sm leading-relaxed">Layanan paket wisata dan rental mobil terpercaya dengan pengalaman terbaik.</p>

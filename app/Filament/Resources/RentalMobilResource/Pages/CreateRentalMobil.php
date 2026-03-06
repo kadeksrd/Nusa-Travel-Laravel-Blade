@@ -2,4 +2,10 @@
 namespace App\Filament\Resources\RentalMobilResource\Pages;
 use App\Filament\Resources\RentalMobilResource;
 use Filament\Resources\Pages\CreateRecord;
-class CreateRentalMobil extends CreateRecord { protected static string $resource = RentalMobilResource::class; }
+class CreateRentalMobil extends CreateRecord { 
+    protected static string $resource = RentalMobilResource::class; 
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
+    }
